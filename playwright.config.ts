@@ -13,7 +13,7 @@ import path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 // Get environment value (like 'int', 'stg', or '')
-const environment = process.env.env?.trim();
+const environment = process.env.env?.trim().toLowerCase();
 
 // Determine base URL based on env
 let baseURL = 'https://automationexercise.com/'; // default
