@@ -13,6 +13,11 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
+    - name: Create .env file from GitHub Secrets
+      run: |
+        echo "env=${{ secrets.ENV }}" >> .env
+        echo "email=${{ secrets.EMAIL }}" >> .env
+        echo "password=${{ secrets.PASSWORD }}" >> .env
     - name: Install dependencies
       run: npm ci
     - name: Install Playwright Browsers

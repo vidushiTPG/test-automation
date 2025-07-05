@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test';
-import { sign } from 'crypto';
 import HomePage from '../pages/HomePage';
 
 test.describe('Register User Test', () => {
