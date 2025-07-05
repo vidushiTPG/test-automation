@@ -1,5 +1,5 @@
 import {Locator, Page} from '@playwright/test';
-import SignupPage from './SignupPage';
+import SignupPage from './SignUpPage';
 
 
 export default class LoginPage {
