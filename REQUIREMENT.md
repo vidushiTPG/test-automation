@@ -41,14 +41,14 @@ This document outlines the technical requirements for building a robust, scalabl
 
 ## ✨ Features & Requirements
 
-### ✅ 1. Test Automation Basics
+### ✅ 1. Test Automation Basics - Done
 - [x] Playwright with TypeScript
 - [x] Page Object Model (POM) with OOP concepts
 - [x] Centralized selectors and utilities
 
 ---
 
-### 📲 2. Multi-Device Testing
+### 📲 2. Multi-Device Testing - Done
 - [x] Desktop
 - [x] Tablet
 - [x] Mobile
@@ -56,14 +56,14 @@ This document outlines the technical requirements for building a robust, scalabl
 
 ---
 
-### 🌐 3. Cross-Browser Testing
+### 🌐 3. Cross-Browser Testing - Done
 - [x] Chromium
 - [x] Firefox
 - [x] WebKit
 
 ---
 
-### 🧪 4. API Testing
+### 🧪 4. API Testing - Not yet started 
 - [x] Integrated REST API test support using Playwright’s `request` context
 - [x] JSON schema validation
 - [x] Request/response logging
@@ -83,36 +83,38 @@ This document outlines the technical requirements for building a robust, scalabl
 
 ---
 
-### 🔐 7. Password Encryption
+### 🔐 7. Password Encryption - Not Yet Implemented 
 - [x] Use Node.js crypto module or `dotenv` for secrets
 - [x] Encrypt/decrypt password fields safely
 - [x] Avoid hardcoding secrets in the codebase
 
 ---
 
-### 🌎 8. Multi-Environment Support
+### 🌎 8. Multi-Environment Support - Done
 - [x] `.env` files for different environments (`.env.dev`, `.env.qa`, `.env.prod`)
 - [x] Use `dotenv` or `tsconfig-paths` to manage env-specific data
 
 ---
 
-### 📈 9. Reporting
-- [x] Allure Report
-- [x] HTML Report (built-in with Playwright)
-- [x] Screenshot/video capture on failures
-- [x] CI-friendly artifacts generation
+### 📈 9. Reporting - In progress
+- [x] Allure Report - Not yet started 
+- [x] HTML Report (built-in with Playwright) - Done
+- [x] Screenshot - Done 
+- [x] video capture on failures - Not yet started 
+- [x] CI-friendly artifacts generation - Done
 
 ---
 
 ### 🔁 10. CI/CD Integration
-- [x] GitHub Actions / GitLab / Azure DevOps pipeline integration
-- [x] Docker-ready for test execution
-- [x] Headless browser testing
-- [x] Retry + artifact upload on failure
+- [x] GitHub Actions - Done 
+- [x] Azure DevOps pipeline integration - Not yet started 
+- [x] Docker-ready for test execution Not yet started 
+- [x] Headless browser testing - Done
+- [x] Retry + artifact upload on failure - Not yet started 
 
 ---
 
-### 📦 11. Reusability & Utils
+### 📦 11. Reusability & Utils - Not yet started 
 - [x] Custom utilities for:
   - Date/time formatting
   - Test data generators (Faker.js)
@@ -123,7 +125,7 @@ This document outlines the technical requirements for building a robust, scalabl
 
 ---
 
-### 🧹 12. Code Quality
+### 🧹 12. Code Quality - Not yet started 
 - [x] ESLint + Prettier setup
 - [x] husky + lint-staged for pre-commit checks
 - [x] Git hooks for formatting and type-checking
@@ -131,26 +133,26 @@ This document outlines the technical requirements for building a robust, scalabl
 ---
 
 ### ⚙️ 13. Parallel Testing
-- [x] Parallel test execution (default in Playwright)
-- [x] Sharding for large test suites (CI optimization)
-- [x] Tag-based test grouping: `@smoke`, `@regression`, `@sanity`, etc.
+- [x] Parallel test execution (default in Playwright) - Done
+- [x] Sharding for large test suites (CI optimization) - Not yet started 
+- [x] Tag-based test grouping: `@smoke`, `@regression`, `@sanity`, etc. - Not yet started 
 
 ---
 
-### 🔧 14. Logging
+### 🔧 14. Logging - Not yet started 
 - [x] Structured logs using `winston` or `pino`
 - [x] Separate logs per test run
 - [x] Logs captured as Allure attachments
 
 ---
 
-## 🔖 Tags and Filtering
+## 🔖 Tags and Filtering - Not yet started 
 - [x] Ability to run tests by tag: `npx playwright test --grep @smoke`
 - [x] Tags defined using `test.info().annotations`
 
 ---
 
-## 📌 Non-Functional Goals
+## 📌 Non-Functional Goals - In Progress
 - Maintainable and extensible codebase
 - Readable and reusable test logic
 - Team-friendly documentation and onboarding
@@ -158,9 +160,10 @@ This document outlines the technical requirements for building a robust, scalabl
 ---
 
 ## 📚 Documentation to be Provided
-- `README.md` for setup and usage
-- `CONTRIBUTING.md` for contribution guidelines
-- `docs/` folder for:
+- `REQUIREMENT.md` for general feature explanation - in progress
+- `README.md` for setup and usage - Not yet started
+- `CONTRIBUTING.md` for contribution guidelines - Not yet started
+- `docs/` folder for: - Not yet started
   - Framework architecture
   - Test writing guidelines
   - CI/CD setup
@@ -187,23 +190,25 @@ This document outlines the technical requirements for building a robust, scalabl
 ## ✅ Deliverables
 
 - Fully working Playwright framework
-- Sample test suite (UI + API)
-- Allure + HTML reporting enabled
-- `.env` setup for multi-environment
-- Parallel execution support
-- CI/CD config (e.g., GitHub Actions YAML)
-- Documentation
+- Sample test suite (UI + API) - done
+- Allure + HTML reporting enabled - in progress 
+- `.env` setup for multi-environment - done
+- Parallel execution support - done
+- Multi Device Testing - Done
+- CI/CD config (e.g., GitHub Actions YAML) - done
+- Self Healing - in progress 
+- Documentation 
 
 ---
 ### 3. Test Scenarios (Sample)
 ### 3.1 Page Object Model Class and basic test
-**Scenario:** Verify creation of Page class for loign page and create basic test.
+**Scenario:** Verify creation of Page classes for login/home/signup page and create basic test.
 
 **Steps:**
 
 Create POM Class for login page.
 Create Tests using Page class and its methods to login.
-Log in to Salesforce.
+Log in to AUT.
 Verify the success of login
 
 ### 3.2 Data-Driven Testing
