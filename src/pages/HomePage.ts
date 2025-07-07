@@ -28,5 +28,9 @@ export default class HomePage {
     async isSliderVisible() {
         return await this.SLIDER.isVisible();
     }
+
+    async getPageTitle(): Promise<string> {
+        return await this.page.title();
+}
      
 }

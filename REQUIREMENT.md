@@ -111,6 +111,7 @@ This document outlines the technical requirements for building a robust, scalabl
 - [x] Docker-ready for test execution Not yet started 
 - [x] Headless browser testing - Done
 - [x] Retry + artifact upload on failure - Not yet started 
+- [x] Supports Execution in Remote Machine like selenoid 
 
 ---
 
