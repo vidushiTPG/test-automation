@@ -68,7 +68,7 @@ export default defineConfig({
   {
     name: 'Mobile View',
     use: {
-      ...devices['iPhone 12'],
+      ...devices['iPhone 15'],
     },
   },
   //  {

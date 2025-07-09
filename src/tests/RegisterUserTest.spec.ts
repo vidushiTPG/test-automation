@@ -1,15 +1,8 @@
-import { test, expect } from '@playwright/test';
-import HomePage from '../pages/HomePage';
+import { expect } from '@playwright/test';
+import { test } from '../fixtures/customFixtures';
+import homePage from '../pages/HomePage';
 
-test.describe('Register User Test', () => {
-let homePage;
-let loginPage;
-let signupPage;
-
-
-  test('should register a new user successfully', async ({ page }) => {
-    // Instantiate page objects with the current 'page'
-    homePage = new HomePage(page);
+test('should register a new user successfully', async ({ page, homePage, loginPage, signUpPage }) => {
     await homePage.navigateToHomePage();
 
     await homePage.isSliderVisible();
@@ -18,12 +11,12 @@ let signupPage;
 
     await loginPage.enterName('Test User');
     await loginPage.enterEmail('testuserdefeffe@example.com');
-    signupPage = await loginPage.clickOnSignupButton();
+    signUpPage = await loginPage.clickOnSignupButton();
 
     //to the test intentionally failing
     // await expect(signupPage.isNewUserSignupHeadingVisible()).toBeTruthy(); 
 
-    await expect(signupPage.isSignupHeadingVisible()).toBeTruthy();
+    await expect(signUpPage.isSignupHeadingVisible()).toBeTruthy();
 
 
   });
@@ -38,4 +31,3 @@ let signupPage;
     }
     await page.goto(process.env.env);
   });
-});
