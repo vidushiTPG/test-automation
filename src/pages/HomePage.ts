@@ -8,7 +8,7 @@ export default class HomePage {
 
     constructor(private page: Page){
         this.page = page;
-           this.SLIDER = this.page.locator('#slider-carousel');
+        this.SLIDER = this.page.locator('#slider-carousel');
         this.SIGNUP_LOGIN_BUTTON = this.page.locator("//a[text()=' Signup / Login']");
     }
 
