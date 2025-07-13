@@ -52,7 +52,7 @@ export default defineConfig({
     video: 'on-first-retry',
     acceptDownloads: false,
     ignoreHTTPSErrors: false,
-    headless: false,
+    headless: true,
   },
 
   // Each test is given 30 seconds.
