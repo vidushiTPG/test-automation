@@ -20,7 +20,7 @@ export function generateAddress(): UserAddress {
   };
 };
 
-export const validCredentials = {
+export const validRandomCredentials = {
   name: 'TestUser',
   email: generateEmail(),
   password: 'Password123!'

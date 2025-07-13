@@ -1,6 +1,6 @@
 import { test } from '../fixtures/customFixtures';
 import { expect } from '@playwright/test';
-import { validCredentials } from '../data/validCredentials';
+import { validRandomCredentials } from '../data/validCredentials';
 import { generateAddress } from '../data/validCredentials';
 
 
@@ -19,9 +19,9 @@ test('should register a new user and delete the account', async ({ homePage, log
   await expect(loginPage.isNewUserSignupHeadingVisible()).toBeTruthy();
 
   // 6. Enter name and email address
-  await loginPage.enterName(validCredentials.name);
+  await loginPage.enterName(validRandomCredentials.name);
  // const email = generateEmail();
-  await loginPage.enterEmail(validCredentials.email);
+  await loginPage.enterEmail(validRandomCredentials.email);
 
   // 7. Click 'Signup' button
   await loginPage.clickOnSignupButton();
@@ -31,7 +31,7 @@ test('should register a new user and delete the account', async ({ homePage, log
 
   // 9. Fill details: Name, Email, Password, Date of birth
   await test.step('Fill personal details, and address deatils', async () => {
-    await signUpPage.fillPersonalDetails(validCredentials.name, validCredentials.email, validCredentials.password, '10', 'May', '1990');
+    await signUpPage.fillPersonalDetails(validRandomCredentials.name, validRandomCredentials.email, validRandomCredentials.password, '10', 'May', '1990');
     await signUpPage.checkNewsletter();
     await signUpPage.checkSpecialOffer(); 
     const address = generateAddress();
@@ -49,7 +49,7 @@ test('should register a new user and delete the account', async ({ homePage, log
   await signUpPage.clickContinue();
 
   // 16. Verify that 'Logged in as username' is visible
-  await expect(homePage.isLoggedInAs(validCredentials.name)).toBeTruthy();
+  await expect(homePage.isLoggedInAs(validRandomCredentials.name)).toBeTruthy();
 
   // 17. Click 'Delete Account' button
   await homePage.clickDeleteAccount();
