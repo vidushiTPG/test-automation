@@ -24,8 +24,8 @@ export default class SignUpPage {
     private readonly ZIPCODE_TEXTBOX: Locator;
     private readonly MOBILE_NUMBER_TEXTBOX: Locator;
     private readonly CREATE_ACCOUNT_BUTTON: Locator;
-    
-
+    private readonly CONTINUE_BUTTON: Locator;
+    private readonly CREATED_MSG: Locator;
 
     constructor(private page: Page) {
         
@@ -52,6 +52,10 @@ export default class SignUpPage {
         this.ZIPCODE_TEXTBOX = this.page.locator('#zipcode');
         this.MOBILE_NUMBER_TEXTBOX = this.page.locator('#mobile_number');
         this.CREATE_ACCOUNT_BUTTON = this.page.locator('//button[text()="Create Account"]');
+        this.CONTINUE_BUTTON = this.page.locator("//a[text()='Continue']");
+        this.CREATED_MSG = this.page.locator("//h2[contains(text(),'ACCOUNT CREATED!')]");
+
+
         
     }
 
@@ -60,61 +64,57 @@ export default class SignUpPage {
     }
 
     async enterName(name: string) {
-        await this.NAME_TEXTBOX.fill(name);
+      await this.NAME_TEXTBOX.fill(name);
     }
     async enterEmail(email: string) {
-        await this.EMAIL_TEXTBOX.fill(email);
+      await this.EMAIL_TEXTBOX.fill(email);
     }
     async enterPassword(password: string) {
-        await this.PASSWORD_TEXTBOX.fill(password);
+      await this.PASSWORD_TEXTBOX.fill(password);
     }
-    async selectDay(day: string) {      
-        await this.DAYS_DROPDOWNX.selectOption(day);
-    }
-    async selectMonth(month: string) {
-        await this.MONTHS_DROPDOWN.selectOption(month);
-    }
-    async selectYear(year: string) {
-        await this.YEARS_DROPDOWN.selectOption(year);
+    async selectDOB(day: string, month: string, year: string) {
+      await this.DAYS_DROPDOWNX.selectOption(day);
+      await this.MONTHS_DROPDOWN.selectOption(month);
+      await this.YEARS_DROPDOWN.selectOption(year);
     }
     async checkNewsletter() {
-        await this.NEWSLETTER_CHECKBOX.check();
+      await this.NEWSLETTER_CHECKBOX.check();
     }
-    async checkSpecialOffer() {     
-        await this.SPECIAL_OFFER_CHECKBOX.check();
+    async checkSpecialOffer() {
+      await this.SPECIAL_OFFER_CHECKBOX.check();
     }
-    async enterFirstName(firstName: string) {   
-        await this.FIRST_NAME_TEXTBOX.fill(firstName);
+    async enterFirstName(firstName: string) {
+      await this.FIRST_NAME_TEXTBOX.fill(firstName);
     }
     async enterLastName(lastName: string) {
-        await this.LAST_NAME_TEXTBOX.fill(lastName);
+      await this.LAST_NAME_TEXTBOX.fill(lastName);
     }
     async enterCompany(company: string) {
-        await this.COMPANY_TEXTBOX.fill(company);
+      await this.COMPANY_TEXTBOX.fill(company);
     }
-    async enterAddress1(address1: string) {
-        await this.ADDRESS1_TEXTBOX.fill(address1);
+    async enterAddress1(address: string) {
+      await this.ADDRESS1_TEXTBOX.fill(address);
     }
     async enterAddress2(address2: string) {
-        await this.ADDRESS2_TEXTBOX.fill(address2);
+      await this.ADDRESS2_TEXTBOX.fill(address2);
     }
     async selectCountry(country: string) {
-        await this.COUNTRY_DROPDOWN.selectOption(country);
-    }           
+      await this.COUNTRY_DROPDOWN.selectOption(country);
+    }
     async enterState(state: string) {
-        await this.STATE_TEXTBOX.fill(state);
+      await this.STATE_TEXTBOX.fill(state);
     }
     async enterCity(city: string) {
-        await this.CITY_TEXTBOX.fill(city);
+      await this.CITY_TEXTBOX.fill(city);
     }
     async enterZipcode(zipcode: string) {
-        await this.ZIPCODE_TEXTBOX.fill(zipcode);
+      await this.ZIPCODE_TEXTBOX.fill(zipcode);
     }
-    async enterMobileNumber(mobileNumber: string) {
-        await this.MOBILE_NUMBER_TEXTBOX.fill(mobileNumber);
+    async enterMobileNumber(mobile: string) {
+      await this.MOBILE_NUMBER_TEXTBOX.fill(mobile);
     }
-    async clickOnCreateAccountButton() {
-        await this.CREATE_ACCOUNT_BUTTON.click();
+    async clickCreateAccount() {
+      await this.CREATE_ACCOUNT_BUTTON.click();
     }       
     async isNameTextboxVisible() {
         return await this.NAME_TEXTBOX.isVisible();
@@ -237,5 +237,30 @@ export default class SignUpPage {
                (await this.CREATE_ACCOUNT_BUTTON.isEnabled() && !(await this.CREATE_ACCOUNT_BUTTON.isVisible())) ||
                (!(await this.CREATE_ACCOUNT_BUTTON.isEnabled()) || await this.CREATE_ACCOUNT_BUTTON.isVisible());
     }
+    async isAccountCreatedVisible() {
+      return await this.CREATED_MSG.isVisible();
+    }
+    async clickContinue() {
+    await this.CONTINUE_BUTTON.isVisible();
+    await this.CONTINUE_BUTTON.click();
+    }
 
-}
+    async fillPersonalDetails(name: string, email: string, password: string, day: string, month: string, year: string) {
+      await this.enterName(name);
+      await this.enterPassword(password);
+      await this.selectDOB(day, month, year);
+    }
+    async fillAddressDetails(firstName: string, lastName: string, company: string,
+                              address1: string, address2: string, country: string,
+                              state: string, city: string, zipcode: string, mobile: string) {
+      await this.enterFirstName(firstName);
+      await this.enterLastName(lastName);
+      await this.enterCompany(company);
+      await this.enterAddress1(address1);
+      await this.enterAddress2(address2);
+      await this.enterState(state);
+      await this.enterCity(city);
+      await this.enterZipcode(zipcode);
+      await this.enterMobileNumber(mobile);
+        }
+    }
