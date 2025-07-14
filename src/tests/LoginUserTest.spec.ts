@@ -18,11 +18,11 @@ test('should login with valid credentials and delete the account', async ({ home
   await expect(loginPage.isLoginHeadingVisible()).toBeTruthy();
 
   // 6. Enter correct email address and password
-  if (!process.env.EMAIL || !process.env.PASSWORD) {
+  if (!process.env.email || !process.env.password) {
     throw new Error('Email or password environment variable is not set.');
   }
-  await loginPage.enterLoginEmail(process.env.EMAIL);
-  await loginPage.enterLoginPassword(process.env.PASSWORD);
+  await loginPage.enterLoginEmail(process.env.email);
+  await loginPage.enterLoginPassword(process.env.password);
 
   // 7. Click 'login' button
   await loginPage.clickLoginButton();
