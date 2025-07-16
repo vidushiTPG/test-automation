@@ -70,4 +70,8 @@ export default class LoginPage {
     async clickLoginButton() {
       await this.LOGIN_BUTTON.click();
     }
+    async isLoginErrorVisible(errorText: string) {
+      const errorLocator = this.page.locator(`text=${errorText}`);
+      return await errorLocator.isVisible();
+    }
 }

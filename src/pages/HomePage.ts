@@ -1,5 +1,6 @@
 import {Page, Locator} from '@playwright/test';
 import LoginPage from './LoginPage';
+import { expect } from '@playwright/test';
 
 export default class HomePage {
     private readonly SLIDER: Locator;
@@ -53,7 +54,12 @@ export default class HomePage {
         return await this.ACCOUNT_DELETED_MESSAGE.isVisible();
     }
     async clickContinueAfterDelete() {
-        await this.CONTINUE_BUTTON.click();
+        const continueBtn = this.page.locator("//a[text()='Continue']");
+        await continueBtn.waitFor({ state: 'visible', timeout: 10000 });
+        await continueBtn.waitFor({ state: 'attached', timeout: 10000 });
+        await expect(continueBtn).toBeVisible({ timeout: 10000 });
+        await expect(continueBtn).toBeEnabled({ timeout: 10000 });
+        await continueBtn.click();
     }
      
 }
