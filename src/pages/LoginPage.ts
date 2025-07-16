@@ -61,8 +61,7 @@ export default class LoginPage {
         return !(await this.SIGNUP_BUTTON.isEnabled());
     }  
     async enterLoginEmail(email: string) {
-  
-      await this.EMAIL_TEXTBOX.fill(email);
+      await this.LOGIN_EMAIL_TEXTBOX.fill(email);
     }
     async enterLoginPassword(password: string) {
       await this.LOGIN_PASSWORD_TEXTBOX.fill(password);

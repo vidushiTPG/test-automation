@@ -26,4 +26,8 @@ export const validRandomCredentials = {
   password: 'Password123!'
 };
 
-
+export const invalidRandomCredentials = {
+  name: '',
+  email: 'wrong.email@example.com',
+  password: 'short'
+};

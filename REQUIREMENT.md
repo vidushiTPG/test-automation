@@ -84,7 +84,8 @@ This document outlines the technical requirements for building a robust, scalabl
 ---
 
 ### 🔐 7. Password Encryption - Not Yet Implemented 
-- [x] Use Node.js crypto module or `dotenv` for secrets
+- [x] Use Node.js crypto module 
+- [x] `dotenv` for secrets
 - [x] Encrypt/decrypt password fields safely
 - [x] Avoid hardcoding secrets in the codebase
 
