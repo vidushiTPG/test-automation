@@ -101,7 +101,7 @@ This document outlines the technical requirements for building a robust, scalabl
 - [x] Allure Report - Not yet started 
 - [x] HTML Report (built-in with Playwright) - Done
 - [x] Screenshot - Done 
-- [x] video capture on failures - Not yet started 
+- [x] video capture on first-retry  - Done 
 - [x] CI-friendly artifacts generation - Done
 
 ---
@@ -141,7 +141,7 @@ This document outlines the technical requirements for building a robust, scalabl
 
 ---
 
-### 🔧 14. Logging - Not yet started 
+### 🔧 14. Logging - Done
 - [x] Structured logs using `winston` or `pino`
 - [x] Separate logs per test run
 - [x] Logs captured as Allure attachments
@@ -163,7 +163,7 @@ This document outlines the technical requirements for building a robust, scalabl
 
 ## 📚 Documentation to be Provided
 - `REQUIREMENT.md` for general feature explanation - in progress
-- `README.md` for setup and usage - Not yet started
+- `README.md` for setup and usage - Done
 - `CONTRIBUTING.md` for contribution guidelines - Not yet started
 - `docs/` folder for: - Not yet started
   - Framework architecture
