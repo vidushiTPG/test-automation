@@ -1,5 +1,6 @@
 import {Page, Locator} from '@playwright/test';
 import LoginPage from './LoginPage';
+import { waitForAndClick } from '../utils/actionHelpersUtil';
 import { expect } from '@playwright/test';
 
 export default class HomePage {
@@ -27,9 +28,7 @@ export default class HomePage {
     }
     
     async clickOnSignupLoginButton() {
-        await this.SIGNUP_LOGIN_BUTTON.click().catch((error) => {
-            console.error('Error clicking on Signup/Login button:', error);
-        });
+        await waitForAndClick(this.SIGNUP_LOGIN_BUTTON);
         const loginPage = new LoginPage(this.page);
         return loginPage;
 
@@ -48,7 +47,7 @@ export default class HomePage {
         return await LOGGED_IN_USERNAME.isVisible();
     }
     async clickDeleteAccount() {
-        await this.DELETE_ACCOUNT_BUTTON.click();
+        await waitForAndClick(this.DELETE_ACCOUNT_BUTTON);
     }
     async isAccountDeletedVisible() {
         return await this.ACCOUNT_DELETED_MESSAGE.isVisible();

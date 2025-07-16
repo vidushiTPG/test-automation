@@ -58,7 +58,7 @@ Vidushi Mishra
 git clone https://github.com/vidushiTPG/test-automation.git
 cd test-automation
 
-# Install dependencies
+# Install dependencies inside the project folder 
 npm install
 
 ## 🧪 Running Tests
