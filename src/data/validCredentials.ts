@@ -1,8 +1,8 @@
 import { faker } from '@faker-js/faker';
-import { UserAddress } from '../types/users';
+import { UserAddress, PersonalDetails } from '../types/users';
 
 export function generateEmail(): string {
-  return `testuser_${Date.now()}@mail.com`;
+  return `${faker.person.firstName().toLowerCase()}.${faker.person.lastName().toLowerCase()}_${Date.now()}@mail.com`;
 };
 
 export function generateAddress(): UserAddress {
@@ -19,7 +19,19 @@ export function generateAddress(): UserAddress {
     mobileNumber: faker.phone.number({ style: 'national' }),
   };
 };
-
+export function personalDetails(): PersonalDetails {
+  return {
+    firstName: faker.person.firstName(),
+    lastName: faker.person.lastName(),
+    email: generateEmail(),
+    password: faker.internet.password(),
+    dateOfBirth: {
+      day: faker.date.birthdate().getDate().toString(),
+      month: faker.date.month(),
+      year: faker.date.birthdate().getFullYear().toString()
+    }
+  };
+};
 export const validRandomCredentials = {
   name: 'TestUser',
   email: generateEmail(),
@@ -31,3 +43,6 @@ export const invalidRandomCredentials = {
   email: 'wrong.email@example.com',
   password: 'short'
 };
+export const personalDetailsData = personalDetails();
+
+export const userAddressData = generateAddress();

@@ -1,5 +1,6 @@
 import {Locator, Page} from '@playwright/test';
 import SignupPage from './SignUpPage';
+import * as actionsHelper from '../utils/actionHelpersUtil';
 
 
 export default class LoginPage {
@@ -33,15 +34,13 @@ export default class LoginPage {
         return await this.LOGIN_HEADING_TEXT.isVisible();
     }
     async enterName(name: string) { 
-        await this.NAME_TEXTBOX.fill(name);
+        await actionsHelper.waitForAndFill(this.NAME_TEXTBOX, name);
     }
     async enterEmail(email: string) {
-        await this.EMAIL_TEXTBOX.fill(email);
+        await actionsHelper.waitForAndFill(this.EMAIL_TEXTBOX, email);
     }
     async clickOnSignupButton() {
-        await this.SIGNUP_BUTTON.click().catch((error) => {
-            console.error('Error clicking on Signup button:', error);
-        });
+        await actionsHelper.waitForAndClick(this.SIGNUP_BUTTON);
         const signupPage = new SignupPage(this.page);
         return signupPage;
     }
@@ -61,13 +60,13 @@ export default class LoginPage {
         return !(await this.SIGNUP_BUTTON.isEnabled());
     }  
     async enterLoginEmail(email: string) {
-      await this.LOGIN_EMAIL_TEXTBOX.fill(email);
+      await actionsHelper.waitForAndFill(this.LOGIN_EMAIL_TEXTBOX, email);
     }
     async enterLoginPassword(password: string) {
-      await this.LOGIN_PASSWORD_TEXTBOX.fill(password);
+      await actionsHelper.waitForAndFill(this.LOGIN_PASSWORD_TEXTBOX, password);
     }
     async clickLoginButton() {
-      await this.LOGIN_BUTTON.click();
+      await actionsHelper.waitForAndClick(this.LOGIN_BUTTON);
     }
     async isLoginErrorVisible(errorText: string) {
       const errorLocator = this.page.locator(`text=${errorText}`);

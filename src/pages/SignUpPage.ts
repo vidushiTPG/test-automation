@@ -1,4 +1,5 @@
 import { Page, Locator } from "@playwright/test";
+import { UserAddress, PersonalDetails} from "../types/users";
 export default class SignUpPage {
 
     // Enter Account Information
@@ -245,22 +246,39 @@ export default class SignUpPage {
     await this.CONTINUE_BUTTON.click();
     }
 
-    async fillPersonalDetails(name: string, email: string, password: string, day: string, month: string, year: string) {
-      await this.enterName(name);
-      await this.enterPassword(password);
-      await this.selectDOB(day, month, year);
+    // async fillPersonalDetails(name: string, password: string, day: string, month: string, year: string) {
+    //   await this.enterName(name);
+    //   await this.enterPassword(password);
+    //   await this.selectDOB(day, month, year);
+    // }
+
+    async fillPersonalDetails(details: PersonalDetails): Promise<void> {
+      const fieldActions = [
+        { value: details.firstName, action: this.enterName },
+        { value: details.lastName, action: this.enterLastName },
+      //  { value: details.email, action: this.enterEmail },
+        { value: details.password, action: this.enterPassword },
+        { value: details.dateOfBirth.day, action: this.selectDOB.bind(this, details.dateOfBirth.day, details.dateOfBirth.month, details.dateOfBirth.year) }
+      ];
+      for (const { value, action } of fieldActions) {
+        await action.call(this, value);
+      }
     }
-    async fillAddressDetails(firstName: string, lastName: string, company: string,
-                              address1: string, address2: string, country: string,
-                              state: string, city: string, zipcode: string, mobile: string) {
-      await this.enterFirstName(firstName);
-      await this.enterLastName(lastName);
-      await this.enterCompany(company);
-      await this.enterAddress1(address1);
-      await this.enterAddress2(address2);
-      await this.enterState(state);
-      await this.enterCity(city);
-      await this.enterZipcode(zipcode);
-      await this.enterMobileNumber(mobile);
-        }
+
+    async fillAddressDetails(address: UserAddress): Promise<void> {
+      const fieldActions = [
+    { value: address.firstName, action: this.enterFirstName },
+    { value: address.lastName, action: this.enterLastName },
+    { value: address.company, action: this.enterCompany },
+    { value: address.address1, action: this.enterAddress1 },
+    { value: address.address2, action: this.enterAddress2 },
+    { value: address.state, action: this.enterState },
+    { value: address.city, action: this.enterCity },
+    { value: address.zipCode, action: this.enterZipcode },
+    { value: address.mobileNumber, action: this.enterMobileNumber }
+      ];
+        for (const { value, action } of fieldActions) {
+        await action.call(this, value);
+  }
     }
+  }

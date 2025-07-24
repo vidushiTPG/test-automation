@@ -1,6 +1,7 @@
+
 import {Page, Locator} from '@playwright/test';
 import LoginPage from './LoginPage';
-import { waitForAndClick } from '../utils/actionHelpersUtil';
+import * as actionsHelper from '../utils/actionHelpersUtil';
 import { expect } from '@playwright/test';
 
 export default class HomePage {
@@ -10,8 +11,8 @@ export default class HomePage {
     private readonly DELETE_ACCOUNT_BUTTON: Locator;
     private readonly ACCOUNT_DELETED_MESSAGE: Locator;
     private readonly CONTINUE_BUTTON: Locator;
-
-
+    private readonly CART_NAV_BUTTON: Locator;
+    private readonly VIEW_CART_BUTTON: Locator;
 
     constructor(private page: Page){
         this.page = page;
@@ -20,7 +21,15 @@ export default class HomePage {
         this.DELETE_ACCOUNT_BUTTON = this.page.locator("//a[text()=' Delete Account']");
         this.ACCOUNT_DELETED_MESSAGE = this.page.locator("//h2[contains(text(),'ACCOUNT DELETED!')]");
         this.CONTINUE_BUTTON = this.page.locator("//a[text()='Continue']");
+        this.CART_NAV_BUTTON = this.page.locator("//header[@id='header']//a[contains(@href,'view_cart')]");
+        this.VIEW_CART_BUTTON = this.page.locator("//div[@id='cartModal']//a[@href='/view_cart']");
+    }
 
+    async clickViewCartButton() {
+        await actionsHelper.waitForAndClick(this.VIEW_CART_BUTTON);
+    }
+    async clickCartNavButton() {
+        await actionsHelper.waitForAndClick(this.CART_NAV_BUTTON);
     }
 
     async navigateToHomePage() {
@@ -28,7 +37,7 @@ export default class HomePage {
     }
     
     async clickOnSignupLoginButton() {
-        await waitForAndClick(this.SIGNUP_LOGIN_BUTTON);
+        await actionsHelper.waitForAndClick(this.SIGNUP_LOGIN_BUTTON);
         const loginPage = new LoginPage(this.page);
         return loginPage;
 
@@ -47,17 +56,17 @@ export default class HomePage {
         return await LOGGED_IN_USERNAME.isVisible();
     }
     async clickDeleteAccount() {
-        await waitForAndClick(this.DELETE_ACCOUNT_BUTTON);
+        await actionsHelper.waitForAndClick(this.DELETE_ACCOUNT_BUTTON);
     }
     async isAccountDeletedVisible() {
         return await this.ACCOUNT_DELETED_MESSAGE.isVisible();
     }
     async clickContinueAfterDelete() {
         const continueBtn = this.page.locator("//a[text()='Continue']");
-        await continueBtn.waitFor({ state: 'visible', timeout: 10000 });
-        await continueBtn.waitFor({ state: 'attached', timeout: 10000 });
-        await expect(continueBtn).toBeVisible({ timeout: 10000 });
-        await expect(continueBtn).toBeEnabled({ timeout: 10000 });
+        await continueBtn.waitFor({ state: 'visible', timeout: 30000 });
+        await continueBtn.waitFor({ state: 'attached', timeout: 30000 });
+        await expect(continueBtn).toBeVisible({ timeout: 30000 });
+        await expect(continueBtn).toBeEnabled({ timeout: 30000 });
         await continueBtn.click();
     }
      

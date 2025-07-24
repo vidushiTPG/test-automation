@@ -70,7 +70,79 @@ npx playwright test
 # Run specific test  
 npx playwright test TestFileName.spec.ts
 
-
+##  Here’s a clear flowchart of how the key components in the framework interact and flow during a test run:
+┌────────────────────────────────────────────┐
+│                Test Runner                 │
+│ (npx playwright test)                      │
+└────────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────┐
+│       playwright.config.ts (config)        │
+│ - Loads .env based on environment          │
+│ - Sets up browser context, timeouts        │
+│ - Defines projects (Desktop, Mobile, etc.) │
+└────────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────┐
+│           Fixtures / Test Hooks            │
+│ - Provide Page & Home/Login/SignupPage     │
+│ - Setup & teardown per test                │
+└────────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────┐
+│             Test Spec File                 │
+│ (e.g., login/error validation test)        │
+│ - Use test(…) with fixtures:               │
+│   homePage.navigateTo(), login(), etc.     │
+│ - Call helper functions: waiting, clicking,|
+│   filling, popup/window/frame handling     │
+└────────────────────────────────────────────┘
+                    │
+                    ├─────────────┐
+                    │             │
+                    ▼             │
+┌──────────────────────────┐      │
+│    POM Classes (e.g.,    │      │
+│    HomePage, LoginPage)  │      │
+│ - Encapsulate selectors  │      │
+│   and actions (methods)  │      │
+└──────────────────────────┘      │
+                    │             │
+                    ▼             │
+┌──────────────────────────┐      │
+│    Helper Functions      │      │
+│ (actionHelpersUtil.ts)   │      │
+│ - waitForAndClick        │      │
+│ - waitForAndFill         │      │
+│ - frame, popup           │      │
+│   window, dropdown, etc. │      │
+└──────────────────────────┘      │
+                    │             │
+                    └─────────────┘
+                    ▼
+┌────────────────────────────────────────────┐
+│        Browser / Playwright APIs           │
+│ - Locate, wait, click, fill, etc.          │
+│ - Manage context, page events, frames    │
+└────────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────┐
+│              Test Assertion                │
+│ - expect(...) toBeVisible, toHaveText,     │
+│   toBeEnabled, etc.                        │
+└────────────────────────────────────────────┘
+                    │
+            (Success or Fail)
+                    ▼
+┌────────────────────────────────────────────┐
+│     Reporting & Artifacts on CI/CD         │
+│ - HTML reports, screenshots, videos        │
+│ - Logs attached via testInfo             │
+└────────────────────────────────────────────┘
 
 
 

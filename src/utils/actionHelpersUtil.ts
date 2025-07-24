@@ -1,21 +1,14 @@
 
-import { Frame } from '@playwright/test';
 
-export async function waitForAndClick(selector) {
-  try {
-    await selector.waitFor({ state: 'attached' });
-    await selector.waitFor({ state: 'visible' });
+import { Frame, Page } from '@playwright/test';
+
+export async function waitForAndClick(selector: any) {
+    await selector.waitFor({ state: 'attached', timeout: 7000 });
+    await selector.waitFor({ state: 'visible', timeout: 7000 });
     await selector.click();
-
-  } catch (error) {
-    console.error(`Error waiting for and clicking on selector: ${selector}`, error);
-    throw error;
-    
-  }
-  
 }
 
-async function waitForAndFill(selector, text) {
+export async function waitForAndFill(selector, text) {
   try {
     await selector.waitFor({ state: 'attached' });
     await selector.waitFor({ state: 'visible' });
@@ -29,7 +22,7 @@ async function waitForAndFill(selector, text) {
 
 }
 
-async function getTextFromElement(selector) {
+export async function getTextFromElement(selector) {
   try {
     await selector.waitFor({ state: 'attached' });
     await selector.waitFor({ state: 'visible' });
@@ -43,7 +36,7 @@ async function getTextFromElement(selector) {
 
 }
 
-async function getAttributeValue(selector, attribute) {
+export async function getAttributeValue(selector, attribute) {
   try {
     await selector.waitFor({ state: 'attached' });
     await selector.waitFor({ state: 'visible' });
@@ -57,7 +50,7 @@ async function getAttributeValue(selector, attribute) {
 
 }
 
-async function clearAndType(selector, text) {
+export async function clearAndType(selector, text) {
   try {
     await selector.waitFor({ state: 'attached' });
     await selector.waitFor({ state: 'visible' });
@@ -72,7 +65,7 @@ async function clearAndType(selector, text) {
   
 }
 
-async function selectDropdownByValue(selector, value) {
+export async function selectDropdownByValue(selector, value) {
   try {
     await selector.waitFor({ state: 'attached' });
     await selector.waitFor({ state: 'visible' });
@@ -83,7 +76,7 @@ async function selectDropdownByValue(selector, value) {
   }
 }
 
-async function selectDropdownByLabel(selector, label) {
+export async function selectDropdownByLabel(selector, label) {
   try {
     await selector.waitFor({ state: 'attached' });
     await selector.waitFor({ state: 'visible' });
@@ -94,13 +87,13 @@ async function selectDropdownByLabel(selector, label) {
   }
 }
 
-async function getFrameByName(page, frameName: string): Promise<Frame> {
+export async function getFrameByName(page, frameName: string): Promise<Frame> {
   const frame = page.frame({ name: frameName });
   if (!frame) throw new Error(`Frame with name "${frameName}" not found`);
   return frame;
 }
 
-export async function getFrameBySelector(page, selector: string): Promise<Frame> {
+ export async function getFrameBySelector(page, selector: string): Promise<Frame> {
   const elementHandle = await page.waitForSelector(selector);
   const frame = await elementHandle.contentFrame();
   if (!frame) throw new Error(`No frame found for selector: ${selector}`);
@@ -137,7 +130,8 @@ export async function evaluateInFrame<T>(frame: Frame, script: () => T): Promise
 
 // Open New Tab/Window Handling Helpers
 
-import { Page, BrowserContext } from '@playwright/test';
+import { BrowserContext } from '@playwright/test';
+import { time } from 'console';
 
 export async function clickAndWaitForNewPage(currentPage: Page, context: BrowserContext, clickSelector: string): Promise<Page> {
   const [newPage] = await Promise.all([
@@ -175,7 +169,7 @@ export async function closeOtherPages(context: BrowserContext, keepPage: Page): 
 /**
  * Waits for a popup window to open as a result of clicking on a selector.
  */
- async function handlePopupAfterClick(
+ export async function handlePopupAfterClick(
   parentPage: Page,
   context: BrowserContext,
   clickSelector: string

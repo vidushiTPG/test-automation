@@ -10,3 +10,15 @@ export interface UserAddress {
   zipCode: string;
   mobileNumber: string;
 }
+
+export interface PersonalDetails {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  dateOfBirth: {
+    day: string;
+    month: string;
+    year: string;
+  };
+}

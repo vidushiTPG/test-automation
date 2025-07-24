@@ -1,6 +1,6 @@
 import { test } from '../fixtures/customFixtures';
 import { expect } from '@playwright/test';
-import { validRandomCredentials } from '../data/validCredentials';
+import { personalDetailsData, userAddressData, validRandomCredentials } from '../data/validCredentials';
 import { generateAddress } from '../data/validCredentials';
 import { getTestLogger } from '../logging/logger';
 import fs from 'fs';
@@ -41,12 +41,12 @@ test('should register a new user and delete the account', async ({ homePage, log
 
   // 9. Fill details: Name, Email, Password, Date of birth
   await test.step('Fill personal details, and address details', async () => {
-    await signUpPage.fillPersonalDetails(validRandomCredentials.name, validRandomCredentials.email, validRandomCredentials.password, '10', 'May', '1990');
+  await signUpPage.fillPersonalDetails(personalDetailsData);
+    logger.info('Filled personal details');
     await signUpPage.checkNewsletter();
     await signUpPage.checkSpecialOffer();
-    const address = generateAddress();
-    await signUpPage.fillAddressDetails(address.firstName, address.lastName, address.company, address.address1, address.address2, address.country, address.state, address.city, address.zipCode, address.mobileNumber);
-    logger.info('Filled personal and address details');
+    await signUpPage.fillAddressDetails(userAddressData);
+    logger.info('Filled address details');
   });
 
   // 13. Click 'Create Account button'
