@@ -5,7 +5,7 @@ import { getTestLogger } from '../logging/logger';
 import fs from 'fs';
 import dotenv from 'dotenv';
 
-test.skip('should login with valid credentials and delete the account', async ({ homePage, loginPage }, testInfo) => {
+test('should login with valid credentials and delete the account', async ({ homePage, loginPage }, testInfo) => {
   const logger = getTestLogger(testInfo.title);
   logger.info('Test started');
 
