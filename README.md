@@ -141,7 +141,7 @@ npx playwright test TestFileName.spec.ts
 ┌────────────────────────────────────────────┐
 │     Reporting & Artifacts on CI/CD         │
 │ - HTML reports, screenshots, videos        │
-│ - Logs attached via testInfo             │
+│ - Logs attached via testInfo               │
 └────────────────────────────────────────────┘
 
 
